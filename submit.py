@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 import urllib, urllib2
 import sys
 import json
@@ -8,7 +9,7 @@ r=lambda : sys.stdin.readline()
 
 def get_source(filename):
     if not os.path.exists(filename):
-        return ({'error':True,'error_text':'No such file %s'%filename},'')
+        return ({'error':True,'error_text':'%s는 없는 파일 입니다.'%filename},'')
     fp = open(filename,'r')
     source = fp.read()
     fp.close()
@@ -88,7 +89,7 @@ def submit(username, password, problem_id, source, language):
 def main():
     argv = sys.argv[1:]
     if len(argv) != 2:
-        print 'usage: python submit.py problem_id filename'
+        print '사용법: python submit.py problem_id filename'
         return
     problem_id = int(argv[0])
     filename = argv[1]
@@ -99,16 +100,16 @@ def main():
         return
     language = get_language(filename)
     if language == -1:
-        print 'cannot determine language'
+        print '무슨 언어인지 모르겟어요. 확장자를 확인해 주세요.'
         return
-    sys.stdout.write('Username: ')
+    sys.stdout.write('아이디: ')
     username = r().strip()
-    password = getpass()
+    password = getpass('비밀번호: ')
     if len(username) == 0:
-        print 'Please type username'
+        print '아이디를 입력해 주세요.'
         return
     if len(password) == 0:
-        print 'Please type password'
+        print '비밀번호를 입력해 주세요.'
         return
     res = submit(username,password,problem_id,source,language)
     if res['error']:
