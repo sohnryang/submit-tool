@@ -88,10 +88,10 @@ def submit(username, password, problem_id, source, language):
     return result
 
 def get_result(solution_id, key):
-    results = ['기다리는 중','재채점을 기다리는 중',
-    '컴파일 하는 중','채점중','맞았습니다!!',
-    '출력 형식이 잘못되었습니다','틀렸습니다','시간 초과',
-    '메모리 초과','출력 초과','런타임 에러','컴파일 에러']
+    results = [u'기다리는 중',u'재채점을 기다리는 중',
+    u'컴파일 하는 중',u'채점중',u'맞았습니다!!',
+    u'출력 형식이 잘못되었습니다',u'틀렸습니다',u'시간 초과',
+    u'메모리 초과',u'출력 초과',u'런타임 에러',u'컴파일 에러']
     print '채점 번호: %d' % solution_id
     while True:
         url = 'http://www.acmicpc.net/cmd/status.php'
@@ -107,7 +107,10 @@ def get_result(solution_id, key):
             return
         ans = result['result']
         eval_result = int(ans['result'])
-        print results[eval_result]
+        if eval_result == 3:
+            print u'%s (%s%%)' % (results[eval_result],result['progress'])
+        else:
+            print results[eval_result]
         if eval_result >= 4:
             print u'메모리: %(memory)s KB\n시간: %(time)s MS\n코드 길이: %(code_length)s B' % ans
             if eval_result == 10 or eval_result == 11:
