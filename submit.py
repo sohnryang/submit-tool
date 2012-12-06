@@ -105,10 +105,14 @@ def get_result(solution_id, key):
         if result['error']:
             print result['error_text']
             return
-        result = result['result']
-        print results[int(result['result'])]
-        if int(result['result']) >= 4:
-            print u'메모리: %(memory)s KB\n시간: %(time)s MS\n코드 길이: %(code_length)s B' % result
+        ans = result['result']
+        eval_result = int(ans['result'])
+        print results[eval_result]
+        if eval_result >= 4:
+            print u'메모리: %(memory)s KB\n시간: %(time)s MS\n코드 길이: %(code_length)s B' % ans
+            if eval_result == 10 or eval_result == 11:
+                print '%s 메시지' % results[eval_result]
+                print result['error_text']
             break
         time.sleep(1)
 
