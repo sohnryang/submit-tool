@@ -119,13 +119,27 @@ def get_result(solution_id, key):
             break
         time.sleep(1)
 
+def get_problem_id_from_filename(filename):
+    problem_id, extension = os.path.splitext(filename)
+    if problem_id.isdigit():
+        return int(problem_id)
+    else:
+        return -1
 def main():
     argv = sys.argv[1:]
-    if len(argv) != 2:
+    if len(argv) < 1 or len(argv) > 2:
+        print '사용법: python submit.py filename'
         print '사용법: python submit.py problem_id filename'
         return
-    problem_id = int(argv[0])
-    filename = argv[1]
+    if len(argv) == 1:
+        filename = argv[0]
+        problem_id = get_problem_id_from_filename(filename)
+        if problem_id == -1:
+            print '파일 이름은 문제번호.확장자 형식이 되어야 합니다'
+            return
+    else:
+        problem_id = int(argv[0])
+        filename = argv[1]
     language = 1
     res,source = get_source(filename)
     if res['error']:
