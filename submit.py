@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# Submit Tool v 1.0
 import urllib, urllib2
 import sys
 import json
