@@ -108,7 +108,10 @@ def get_result(solution_id, key):
         ans = result['result']
         eval_result = int(ans['result'])
         if eval_result == 3:
-            print u'%s (%s%%)' % (results[eval_result],result['progress'])
+            if 'progress' in result:
+                print u'%s (%s%%)' % (results[eval_result],result['progress'])
+            else:
+                print u'%s' % (results[eval_result])
         else:
             print results[eval_result]
         if eval_result >= 4:
