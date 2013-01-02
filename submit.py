@@ -23,7 +23,7 @@ def get_language(filename):
         return -1
     if extension in ['.c']:
         return 0
-    elif extension in ['.cpp','.cc','cxx']:
+    elif extension in ['.cpp','.cc','.cxx']:
         return 1
     elif extension in ['.p','.pas']:
         return 2
