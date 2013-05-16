@@ -69,10 +69,39 @@ def get_language(filename):
         return 23
     elif extension in ['.ws']:
         return 24
+    elif extension in ['.groovy']:
+        return 25
     elif extension in ['.tcl']:
         return 26
+    elif extension in ['.asm']:
+        return 27
     elif extension in ['.d']:
         return 29
+    elif extension in ['.clj']:
+        return 33
+    elif extension in ['.fs']:
+        return 37
+    elif extension in ['.fal']:
+        return 39
+    elif extension in ['.pike']:
+        return 41
+    elif extension in ['.sed']:
+        return 43
+    elif extension in ['.rs']:
+        return 44
+    elif extension in ['.boo']:
+        return 46
+    elif extension in ['.i']:
+        return 47
+    elif extension in ['.bc']:
+        return 48
+    elif extension in ['.n']:
+        return 53
+    elif extension in ['.cobra']:
+        return 54
+    elif extension in ['.nim']:
+        return 55
+
     return -1
 
 def submit(username, password, problem_id, source, language):
