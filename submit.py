@@ -113,7 +113,7 @@ def submit(username, password, problem_id, source, language):
     url = 'https://www.acmicpc.net/cmd/submit.php'
     values = {'username':username, 'password':password,
             'problem_id':problem_id,'source':source,
-            'language':language}
+            'language':language, 'version':'1.1'}
     data = urllib.urlencode(values)
     req = urllib2.Request(url,data)
     response = urllib2.urlopen(req)
@@ -203,6 +203,8 @@ def main():
     if res['error']:
         print res['error_text']
         return
+    if 'notice' in res:
+        print res['notice']
     get_result(res['solution_id'], res['key'])
 if __name__ == '__main__':
     main()
