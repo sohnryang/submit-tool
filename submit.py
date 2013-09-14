@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# Submit Tool v 1.0
+# Submit Tool v 1.1
 import urllib, urllib2
 import sys
 import json
@@ -101,11 +101,16 @@ def get_language(filename):
         return 54
     elif extension in ['.nim']:
         return 55
-
+    elif extension in ['fs']:
+        return 56
+    elif extension in ['txt']:
+        return 58
+    elif extension in ['io']:
+        return 61
     return -1
 
 def submit(username, password, problem_id, source, language):
-    url = 'http://www.acmicpc.net/cmd/submit.php'
+    url = 'https://www.acmicpc.net/cmd/submit.php'
     values = {'username':username, 'password':password,
             'problem_id':problem_id,'source':source,
             'language':language}
@@ -145,7 +150,10 @@ def get_result(solution_id, key):
         else:
             print results[eval_result]
         if eval_result >= 4:
-            print u'메모리: %(memory)s KB\n시간: %(time)s MS\n코드 길이: %(code_length)s B' % ans
+            if eval_result == 4:
+                print u'메모리: %(memory)s KB\n시간: %(time)s MS\n코드 길이: %(code_length)s B' % ans
+            else:
+                print u'코드 길이: %(code_length)s B' % ans
             if eval_result == 10 or eval_result == 11:
                 print u'%s 메시지' % results[eval_result]
                 print result['error_text']
