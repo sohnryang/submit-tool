@@ -110,7 +110,7 @@ def get_language(filename):
     return -1
 
 def submit(username, password, problem_id, source, language):
-    url = 'https://www.acmicpc.net/cmd/submit.php'
+    url = 'https://www.acmicpc.net/cmd/submit'
     values = {'username':username, 'password':password,
             'problem_id':problem_id,'source':source,
             'language':language, 'version':'1.1'}
@@ -129,7 +129,7 @@ def get_result(solution_id, key):
     u'메모리 초과',u'출력 초과',u'런타임 에러',u'컴파일 에러']
     print '채점 번호: %d' % solution_id
     while True:
-        url = 'http://www.acmicpc.net/cmd/status.php'
+        url = 'http://www.acmicpc.net/cmd/status'
         values = {'solution_id':solution_id, 'key':key}
         data = urllib.urlencode(values)
         req = urllib2.Request(url,data)
