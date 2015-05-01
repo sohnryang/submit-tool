@@ -11,7 +11,7 @@ r=lambda : sys.stdin.readline()
 
 def get_source(filename):
     if not os.path.exists(filename):
-        return ({'error':True,'error_text':'%s는 없는 파일 입니다'%filename},'')
+        return ({'error':True,'error_text':'%s는 없는 파일입니다'%filename},'')
     fp = open(filename,'r')
     source = fp.read()
     fp.close()
@@ -114,8 +114,9 @@ def submit(username, password, problem_id, source, language):
     values = {'username':username, 'password':password,
             'problem_id':problem_id,'source':source,
             'language':language, 'version':'1.1'}
+    hdr = {'User-Agent':user-agent}
     data = urllib.urlencode(values)
-    req = urllib2.Request(url,data)
+    req = urllib2.Request(url,data,hdr)
     response = urllib2.urlopen(req)
     result = response.read()
     response.close()
@@ -129,10 +130,11 @@ def get_result(solution_id, key):
     u'메모리 초과',u'출력 초과',u'런타임 에러',u'컴파일 에러']
     print '채점 번호: %d' % solution_id
     while True:
-        url = 'http://www.acmicpc.net/cmd/status'
+        url = 'https://www.acmicpc.net/cmd/status'
         values = {'solution_id':solution_id, 'key':key}
+        hdr = {'User-Agent':user-agent}
         data = urllib.urlencode(values)
-        req = urllib2.Request(url,data)
+        req = urllib2.Request(url,data,hdr)
         response = urllib2.urlopen(req)
         result = response.read()
         response.close()
@@ -188,7 +190,7 @@ def main():
         return
     language = get_language(filename)
     if language == -1:
-        print '무슨 언어인지 모르겟어요. 확장자를 확인해 주세요'
+        print '무슨 언어인지 모르겠어요. 확장자를 확인해 주세요'
         return
     sys.stdout.write('아이디: ')
     username = r().strip()
