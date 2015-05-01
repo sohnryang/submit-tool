@@ -114,7 +114,8 @@ def submit(username, password, problem_id, source, language):
     values = {'username':username, 'password':password,
             'problem_id':problem_id,'source':source,
             'language':language, 'version':'1.1'}
-    hdr = {'User-Agent':user-agent}
+    user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+    hdr = {'User-Agent':user_agent}
     data = urllib.urlencode(values)
     req = urllib2.Request(url,data,hdr)
     response = urllib2.urlopen(req)
@@ -132,7 +133,8 @@ def get_result(solution_id, key):
     while True:
         url = 'https://www.acmicpc.net/cmd/status'
         values = {'solution_id':solution_id, 'key':key}
-        hdr = {'User-Agent':user-agent}
+        user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+        hdr = {'User-Agent':user_agent}
         data = urllib.urlencode(values)
         req = urllib2.Request(url,data,hdr)
         response = urllib2.urlopen(req)
