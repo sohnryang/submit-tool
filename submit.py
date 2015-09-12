@@ -101,11 +101,9 @@ def get_language(filename):
         return 54
     elif extension in ['.nim']:
         return 55
-    elif extension in ['fs']:
-        return 56
-    elif extension in ['txt']:
+    elif extension in ['.txt']:
         return 58
-    elif extension in ['io']:
+    elif extension in ['.io']:
         return 61
     return -1
 
