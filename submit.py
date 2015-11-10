@@ -11,7 +11,7 @@ r=lambda : sys.stdin.readline()
 
 def get_source(filename):
     if not os.path.exists(filename):
-        return ({'error':True,'error_text':'%s는 없는 파일입니다'%filename},'')
+        return ({'error':True,'error_text':u'%s는 없는 파일입니다'%filename},'')
     fp = open(filename,'r')
     source = fp.read()
     fp.close()
@@ -127,7 +127,7 @@ def get_result(solution_id, key):
     u'컴파일 하는 중',u'채점중',u'맞았습니다!!',
     u'출력 형식이 잘못되었습니다',u'틀렸습니다',u'시간 초과',
     u'메모리 초과',u'출력 초과',u'런타임 에러',u'컴파일 에러']
-    print '채점 번호: %d' % solution_id
+    print u'채점 번호: %d' % solution_id
     while True:
         url = 'https://www.acmicpc.net/cmd/status'
         values = {'solution_id':solution_id, 'key':key}
@@ -171,14 +171,14 @@ def get_problem_id_from_filename(filename):
 def main():
     argv = sys.argv[1:]
     if len(argv) < 1 or len(argv) > 2:
-        print '사용법: python submit.py filename'
-        print '사용법: python submit.py problem_id filename'
+        print u'사용법: python submit.py filename'
+        print u'사용법: python submit.py problem_id filename'
         return
     if len(argv) == 1:
         filename = argv[0]
         problem_id = get_problem_id_from_filename(filename)
         if problem_id == -1:
-            print '파일 이름은 문제번호.확장자 형식이 되어야 합니다'
+            print u'파일 이름은 문제번호.확장자 형식이 되어야 합니다'
             return
     else:
         problem_id = int(argv[0])
@@ -190,16 +190,16 @@ def main():
         return
     language = get_language(filename)
     if language == -1:
-        print '무슨 언어인지 모르겠어요. 확장자를 확인해 주세요'
+        print u'무슨 언어인지 모르겠어요. 확장자를 확인해 주세요'
         return
-    sys.stdout.write('아이디: ')
+    sys.stdout.write(u'아이디: ')
     username = r().strip()
-    password = getpass('비밀번호: ')
+    password = getpass(u'비밀번호: ')
     if len(username) == 0:
-        print '아이디를 입력해 주세요'
+        print u'아이디를 입력해 주세요'
         return
     if len(password) == 0:
-        print '비밀번호를 입력해 주세요'
+        print u'비밀번호를 입력해 주세요'
         return
     res = submit(username,password,problem_id,source,language)
     if res['error']:
