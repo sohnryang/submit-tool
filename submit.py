@@ -194,7 +194,8 @@ def main():
         return
     sys.stdout.write(u'아이디: ')
     username = r().strip()
-    password = getpass(u'비밀번호: ')
+    sys.stdout.write(u'비밀번호: ')
+    password = getpass('')
     if len(username) == 0:
         print u'아이디를 입력해 주세요'
         return
